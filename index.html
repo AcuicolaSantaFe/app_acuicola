@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro Diario de Alimento de Camarón</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Registro Diario de Alimento de Camarón</h1>
+
+        <!-- FORMULARIO -->
+        <div class="card">
+            <h2>Nuevo Registro</h2>
+            <form id="registroForm">
+                <div class="grid">
+                    <div>
+                        <label>Fecha</label>
+                        <input type="date" id="fecha" required>
+                    </div>
+
+                    <div>
+                        <label>Sitio</label>
+                        <select id="sitio_id" required></select>
+                    </div>
+
+                    <div>
+                        <label>Módulo</label>
+                        <select id="modulo_id" required></select>
+                    </div>
+
+                    <div>
+                        <label>Estanque</label>
+                        <select id="estanque_id" required></select>
+                    </div>
+
+                    <div>
+                        <label>Hectáreas</label>
+                        <input type="text" id="hectareas" readonly>
+                    </div>
+
+                    <div>
+                        <label>Marca</label>
+                        <select id="marca_id" required></select>
+                    </div>
+
+                    <div>
+                        <label>Nueva Marca (si no existe)</label>
+                        <div class="inline-group">
+                            <input type="text" id="nueva_marca" placeholder="Escribe nueva marca">
+                            <button type="button" onclick="agregarMarca()">Agregar</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label>Tipo de Producto</label>
+                        <select id="tipo_producto_id" required></select>
+                    </div>
+
+                    <div>
+                        <label>Nuevo Tipo de Producto (si no existe)</label>
+                        <div class="inline-group">
+                            <input type="text" id="nuevo_tipo_producto" placeholder="Escribe nuevo tipo">
+                            <button type="button" onclick="agregarTipoProducto()">Agregar</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label>Kg al Día</label>
+                        <input type="number" step="0.01" id="kg_dia" required>
+                    </div>
+
+                    <div class="full-width">
+                        <label>Observaciones</label>
+                        <textarea id="observaciones" rows="3"></textarea>
+                    </div>
+                </div>
+
+                <button type="button" class="btn-primary" onclick="guardarRegistro()">Guardar Registro</button>
+            </form>
+        </div>
+
+        <!-- FILTROS -->
+        <div class="card">
+            <h2>Buscar / Filtrar Registros</h2>
+
+            <div class="grid">
+                <div>
+                    <label>Buscar por Fecha</label>
+                    <input type="date" id="filtro_fecha">
+                </div>
+
+                <div>
+                    <label>Filtrar por Sitio</label>
+                    <select id="filtro_sitio"></select>
+                </div>
+
+                <div>
+                    <label>Filtrar por Módulo</label>
+                    <select id="filtro_modulo"></select>
+                </div>
+
+                <div>
+                    <label>Filtrar por Estanque</label>
+                    <select id="filtro_estanque"></select>
+                </div>
+            </div>
+
+            <div class="buttons-row">
+                <button type="button" class="btn-secondary" onclick="buscarRegistros()">Buscar</button>
+                <button type="button" class="btn-warning" onclick="limpiarFiltros()">Limpiar Filtros</button>
+                <button type="button" class="btn-success" onclick="exportarExcel()">Exportar a Excel</button>
+            </div>
+        </div>
+
+        <!-- TABLA -->
+        <div class="card">
+            <h2>Registros Guardados</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Sitio</th>
+                            <th>Módulo</th>
+                            <th>Estanque</th>
+                            <th>Hectáreas</th>
+                            <th>Marca</th>
+                            <th>Tipo de Producto</th>
+                            <th>Kg al Día</th>
+                            <th>Observaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaRegistros"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
